@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.awg.wiredash_apis.model.MonthlyTotalQuoteDataInterface;
 import com.awg.wiredash_apis.model.MonthlyTotalQuotePercentage;
+import com.awg.wiredash_apis.model.MonthlyTotalQuoteSalesPerson;
 import com.awg.wiredash_apis.service.MonthlyTotalQuoteDataService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,25 +28,48 @@ public class MonthlyTotalQuoteDataController {
     private MonthlyTotalQuoteDataService service;
     
 
-    @Operation(summary = "Query 1: Get all Sales Quotation total by grouped by company, month and year ", responses = {
-            @ApiResponse(responseCode = "200", description = "Returns an array of products within the price range"),
-            @ApiResponse(responseCode = "400", description = "One parameter is missing or invalid in the specified range",
+    @Operation(summary = "Query 1: Get all Sales Quotation total grouped by company, month and year ", responses = {
+            @ApiResponse(responseCode = "200", description = "Returns an array of Quotations for the given params"),
+            @ApiResponse(responseCode = "400", description = "One parameter is missing or invalid",
                     content = @Content)
     })
     @GetMapping("/total/{company}/{year}/{month}")
-    public ResponseEntity<List<MonthlyTotalQuoteDataInterface>> getByCompanyAndMonthAndYear(@PathVariable String company,@PathVariable int month,@PathVariable int year){
+    public ResponseEntity<List<MonthlyTotalQuoteDataInterface>> getByCompanyAndMonthAndYear(@PathVariable String company,@PathVariable int year,@PathVariable int month){
     	List<MonthlyTotalQuoteDataInterface> result = service.getByCompanyAndMonthAndYear(company,year,month);
     	return ResponseEntity.ok().body(result);
     }
     
-    @Operation(summary = "Query 2 Get all Sales Quotation total by grouped by company, month and year ", responses = {
-            @ApiResponse(responseCode = "200", description = "Returns an array of products within the price range"),
-            @ApiResponse(responseCode = "400", description = "One parameter is missing or invalid in the specified range",
+    @Operation(summary = "Query 2 Get all Sales Quotation totals and monthly percentage grouped by company, month, year and status", responses = {
+            @ApiResponse(responseCode = "200", description = "Returns an array of Quotations for the given params"),
+            @ApiResponse(responseCode = "400", description = "One parameter is missing or invalid",
                     content = @Content)
     })
     @GetMapping("/percentageByStatus/{company}/{year}/{month}")
-    public ResponseEntity<List<MonthlyTotalQuotePercentage>> getPercentageByCompanyAndMonthAndYear(@PathVariable String company,@PathVariable int month,@PathVariable int year){
+    public ResponseEntity<List<MonthlyTotalQuotePercentage>> getPercentageByCompanyAndMonthAndYear(@PathVariable String company,@PathVariable int year,@PathVariable int  month){
     	List<MonthlyTotalQuotePercentage> result = service.getPercentageByCompanyAndMonthAndYear2(company,year,month);
     	return ResponseEntity.ok().body(result);
     }
+    
+    @Operation(summary = "Query 3 Get all Sales Quotation totals and monthly percentage for a year grouped by grouped by company, month and year and status", responses = {
+            @ApiResponse(responseCode = "200", description = "Returns an array of Quotations for the given params"),
+            @ApiResponse(responseCode = "400", description = "One parameter is missing or invalid",
+                    content = @Content)
+    })
+    @GetMapping("/percentageByStatus/{company}/{year}")
+    public ResponseEntity<List<MonthlyTotalQuotePercentage>> getPercentageByCompanyAndYear(@PathVariable String company,@PathVariable int year){
+    	List<MonthlyTotalQuotePercentage> result = service.getPercentageByCompanyAndYear3(company,year);
+    	return ResponseEntity.ok().body(result);
+    }
+    
+    @Operation(summary = "Query 4: Get all Sales Quotation total by Sales person grouped by company, month and year ", responses = {
+            @ApiResponse(responseCode = "200", description = "Returns an array of Quotations for the given params"),
+            @ApiResponse(responseCode = "400", description = "One parameter is missing or invalid",
+                    content = @Content)
+    })
+    @GetMapping("/totalBySalesPerson/{company}/{year}/{month}")
+    public ResponseEntity<List<MonthlyTotalQuoteSalesPerson>> getTotalSalesPersonByCompanyAndMonthAndYear(@PathVariable String company,@PathVariable int year,@PathVariable int month){
+    	List<MonthlyTotalQuoteSalesPerson> result = service.getTotalSalesPersonCompanyAndMonthAndYear4(company,year,month);
+    	return ResponseEntity.ok().body(result);
+    }
+    
 }

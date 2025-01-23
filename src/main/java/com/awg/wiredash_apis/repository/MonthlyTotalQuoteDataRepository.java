@@ -4,6 +4,7 @@ package com.awg.wiredash_apis.repository;
 import com.awg.wiredash_apis.domain.MonthlyTotalQuoteData;
 import com.awg.wiredash_apis.model.MonthlyTotalQuoteDataInterface;
 import com.awg.wiredash_apis.model.MonthlyTotalQuotePercentage;
+import com.awg.wiredash_apis.model.MonthlyTotalQuoteSalesPerson;
 
 import java.util.List;
 
@@ -25,4 +26,10 @@ public interface MonthlyTotalQuoteDataRepository extends JpaRepository<MonthlyTo
 	
 	@Query(nativeQuery = true, value = "SELECT * FROM [dbo].vwawg_monthly_total_quote_percentage_by_status where company = :company and year = :year and month = :month ")
 	List<MonthlyTotalQuotePercentage> getPercentageByCompanyAndMonthAndYear2(@Param("company") String company,@Param("year") int year,@Param("month") int month);
+	
+	@Query(nativeQuery = true, value = "SELECT * FROM [dbo].vwawg_monthly_total_quote_percentage_by_status where company = :company and year = :year order by month ")
+	List<MonthlyTotalQuotePercentage> getPercentageByCompanyAndYear3(@Param("company") String company,@Param("year") int year);
+	
+	@Query(nativeQuery = true, value = "SELECT * FROM [dbo].vwawg_total_quote_by_sales_person where company = :company and year = :year and month = :month order by total_amount desc ")
+	List<MonthlyTotalQuoteSalesPerson> getTotalSalesPersonCompanyAndMonthAndYear4(@Param("company") String company,@Param("year") int year,@Param("month") int month);
 }

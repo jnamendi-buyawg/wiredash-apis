@@ -4,9 +4,14 @@ import java.util.List;
 
 import com.awg.wiredash_apis.model.MonthlyTotalQuoteDataInterface;
 import com.awg.wiredash_apis.model.MonthlyTotalQuotePercentage;
+import com.awg.wiredash_apis.model.MonthlyTotalQuoteSalesPerson;
 
 public interface MonthlyTotalQuoteDataService {
 	List<MonthlyTotalQuoteDataInterface> getByCompanyAndMonthAndYear(String company, int year, int month);
 	
 	List<MonthlyTotalQuotePercentage> getPercentageByCompanyAndMonthAndYear2(String company, int year, int month);
+	
+	List<MonthlyTotalQuotePercentage> getPercentageByCompanyAndYear3(String company, int year);
+	
+	List<MonthlyTotalQuoteSalesPerson> getTotalSalesPersonCompanyAndMonthAndYear4(String company,int year,int month);
 }
