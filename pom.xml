@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.awg</groupId>
 	<artifactId>wiredash-apis</artifactId>
-	<version>1.0-0</version>
+	<version>1.0.0</version>
 	<name>wiredash-apis</name>
 	<description>Apis for wire awg dashboard app</description>
 	<url/>
