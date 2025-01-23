@@ -24,7 +24,7 @@ jobs:
          run: mvn clean package
 
        - name: Login to Azure Container Registry
-         uses: azure/docker-login@v2
+         uses: docker/login-action@v1
          with:
            registry: ${{ secrets.AZURE_CONTAINER_REGISTRY_ENDPOINT }}
            username: ${{ secrets.AZURE_CONTAINER_REGISTRY_USERNAME }}
