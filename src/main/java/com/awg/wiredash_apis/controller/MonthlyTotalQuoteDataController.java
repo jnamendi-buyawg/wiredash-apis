@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.awg.wiredash_apis.model.MonthlyTotalQuoteDataInterface;
 import com.awg.wiredash_apis.model.MonthlyTotalQuotePercentage;
+import com.awg.wiredash_apis.model.MonthlyTotalQuoteProductCategory;
 import com.awg.wiredash_apis.model.MonthlyTotalQuoteSalesPerson;
 import com.awg.wiredash_apis.service.MonthlyTotalQuoteDataService;
 
@@ -69,6 +70,17 @@ public class MonthlyTotalQuoteDataController {
     @GetMapping("/totalBySalesPerson/{company}/{year}/{month}")
     public ResponseEntity<List<MonthlyTotalQuoteSalesPerson>> getTotalSalesPersonByCompanyAndMonthAndYear(@PathVariable String company,@PathVariable int year,@PathVariable int month){
     	List<MonthlyTotalQuoteSalesPerson> result = service.getTotalSalesPersonCompanyAndMonthAndYear4(company,year,month);
+    	return ResponseEntity.ok().body(result);
+    }
+    
+    @Operation(summary = "Query 4: Get all Sales Quotation total by Sales person grouped by company, month and year ", responses = {
+            @ApiResponse(responseCode = "200", description = "Returns an array of Quotations for the given params"),
+            @ApiResponse(responseCode = "400", description = "One parameter is missing or invalid",
+                    content = @Content)
+    })
+    @GetMapping("/totalByProductCategory/{company}/{year}/{month}")
+    public ResponseEntity<List<MonthlyTotalQuoteProductCategory>> getTotalProductCategoryByCompanyAndMonthAndYear(@PathVariable String company,@PathVariable int year,@PathVariable int month){
+    	List<MonthlyTotalQuoteProductCategory> result = service.getTotalProductCategoryCompanyAndMonthAndYear5(company,year,month);
     	return ResponseEntity.ok().body(result);
     }
     

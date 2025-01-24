@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.awg.wiredash_apis.model.MonthlyTotalQuoteDataInterface;
 import com.awg.wiredash_apis.model.MonthlyTotalQuotePercentage;
+import com.awg.wiredash_apis.model.MonthlyTotalQuoteProductCategory;
 import com.awg.wiredash_apis.model.MonthlyTotalQuoteSalesPerson;
 import com.awg.wiredash_apis.repository.MonthlyTotalQuoteDataRepository;
 import com.awg.wiredash_apis.service.MonthlyTotalQuoteDataService;
@@ -34,5 +35,10 @@ public class MonthlyTotalQuoteDataServiceImpl implements MonthlyTotalQuoteDataSe
 	@Override
 	public List<MonthlyTotalQuoteSalesPerson> getTotalSalesPersonCompanyAndMonthAndYear4(String company,int year,int month){
 		return repository.getTotalSalesPersonCompanyAndMonthAndYear4(company, year, month);
+	}
+	
+	@Override
+	public List<MonthlyTotalQuoteProductCategory> getTotalProductCategoryCompanyAndMonthAndYear5(String company,int year,int month){
+		return repository.getTotalProductCategoryCompanyAndMonthAndYear5(company, year, month);
 	}
 }
