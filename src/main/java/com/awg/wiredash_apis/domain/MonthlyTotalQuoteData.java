@@ -13,9 +13,6 @@ import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Getter
-@Setter
 @Entity
 @Table(name = "vwawg_monthly_total_quote_data")
 public class MonthlyTotalQuoteData {
@@ -28,5 +25,55 @@ public class MonthlyTotalQuoteData {
     private Integer confirmedQuantity;
     private int month;
     private int year;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getCompany() {
+		return company;
+	}
+	public void setCompany(String company) {
+		this.company = company;
+	}
+	public BigDecimal getTotalAmount() {
+		return totalAmount;
+	}
+	public void setTotalAmount(BigDecimal totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+	public Integer getTotalQuantity() {
+		return totalQuantity;
+	}
+	public void setTotalQuantity(Integer totalQuantity) {
+		this.totalQuantity = totalQuantity;
+	}
+	public BigDecimal getConfirmedAmount() {
+		return confirmedAmount;
+	}
+	public void setConfirmedAmount(BigDecimal confirmedAmount) {
+		this.confirmedAmount = confirmedAmount;
+	}
+	public Integer getConfirmedQuantity() {
+		return confirmedQuantity;
+	}
+	public void setConfirmedQuantity(Integer confirmedQuantity) {
+		this.confirmedQuantity = confirmedQuantity;
+	}
+	public int getMonth() {
+		return month;
+	}
+	public void setMonth(int month) {
+		this.month = month;
+	}
+	public int getYear() {
+		return year;
+	}
+	public void setYear(int year) {
+		this.year = year;
+	}
+    
+    
     
 }
