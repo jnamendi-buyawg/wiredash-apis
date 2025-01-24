@@ -2,6 +2,7 @@ package com.awg.wiredash_apis.repository;
 
 
 import com.awg.wiredash_apis.domain.MonthlyTotalQuoteData;
+import com.awg.wiredash_apis.model.MonthlyTotalQuoteCustomerGroup;
 import com.awg.wiredash_apis.model.MonthlyTotalQuoteDataInterface;
 import com.awg.wiredash_apis.model.MonthlyTotalQuotePercentage;
 import com.awg.wiredash_apis.model.MonthlyTotalQuoteProductCategory;
@@ -35,4 +36,7 @@ public interface MonthlyTotalQuoteDataRepository extends JpaRepository<MonthlyTo
 	
 	@Query(nativeQuery = true, value = "SELECT * FROM [dbo].vwawg_total_quote_by_product_category where company = :company and year = :year and month = :month order by total_amount desc ")
 	List<MonthlyTotalQuoteProductCategory> getTotalProductCategoryCompanyAndMonthAndYear5(@Param("company") String company,@Param("year") int year,@Param("month") int month);
+	
+	@Query(nativeQuery = true, value = "SELECT * FROM [dbo].vwawg_total_quote_by_customer_group where company = :company and year = :year and month = :month order by total_amount desc ")
+	List<MonthlyTotalQuoteCustomerGroup> getTotalCustomerGroupCompanyAndMonthAndYear6(@Param("company") String company,@Param("year") int year,@Param("month") int month);
 }

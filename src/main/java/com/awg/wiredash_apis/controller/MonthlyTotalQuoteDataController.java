@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.awg.wiredash_apis.model.MonthlyTotalQuoteCustomerGroup;
 import com.awg.wiredash_apis.model.MonthlyTotalQuoteDataInterface;
 import com.awg.wiredash_apis.model.MonthlyTotalQuotePercentage;
 import com.awg.wiredash_apis.model.MonthlyTotalQuoteProductCategory;
@@ -73,7 +73,7 @@ public class MonthlyTotalQuoteDataController {
     	return ResponseEntity.ok().body(result);
     }
     
-    @Operation(summary = "Query 4: Get all Sales Quotation total by Sales person grouped by company, month and year ", responses = {
+    @Operation(summary = "Query 5: Get all Sales Quotation total by product category grouped by company, month and year ", responses = {
             @ApiResponse(responseCode = "200", description = "Returns an array of Quotations for the given params"),
             @ApiResponse(responseCode = "400", description = "One parameter is missing or invalid",
                     content = @Content)
@@ -81,6 +81,17 @@ public class MonthlyTotalQuoteDataController {
     @GetMapping("/totalByProductCategory/{company}/{year}/{month}")
     public ResponseEntity<List<MonthlyTotalQuoteProductCategory>> getTotalProductCategoryByCompanyAndMonthAndYear(@PathVariable String company,@PathVariable int year,@PathVariable int month){
     	List<MonthlyTotalQuoteProductCategory> result = service.getTotalProductCategoryCompanyAndMonthAndYear5(company,year,month);
+    	return ResponseEntity.ok().body(result);
+    }
+    
+    @Operation(summary = "Query 6: Get all Sales Quotation total by customer group grouped by company, month and year ", responses = {
+            @ApiResponse(responseCode = "200", description = "Returns an array of Quotations for the given params"),
+            @ApiResponse(responseCode = "400", description = "One parameter is missing or invalid",
+                    content = @Content)
+    })
+    @GetMapping("/totalByCustomerGroup/{company}/{year}/{month}")
+    public ResponseEntity<List<MonthlyTotalQuoteCustomerGroup>> getTotalCustomerGroupByCompanyAndMonthAndYear(@PathVariable String company,@PathVariable int year,@PathVariable int month){
+    	List<MonthlyTotalQuoteCustomerGroup> result = service.getTotalCustomerGroupCompanyAndMonthAndYear6(company,year,month);
     	return ResponseEntity.ok().body(result);
     }
     

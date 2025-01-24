@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.awg.wiredash_apis.model.MonthlyTotalQuoteCustomerGroup;
 import com.awg.wiredash_apis.model.MonthlyTotalQuoteDataInterface;
 import com.awg.wiredash_apis.model.MonthlyTotalQuotePercentage;
 import com.awg.wiredash_apis.model.MonthlyTotalQuoteProductCategory;
@@ -40,5 +41,10 @@ public class MonthlyTotalQuoteDataServiceImpl implements MonthlyTotalQuoteDataSe
 	@Override
 	public List<MonthlyTotalQuoteProductCategory> getTotalProductCategoryCompanyAndMonthAndYear5(String company,int year,int month){
 		return repository.getTotalProductCategoryCompanyAndMonthAndYear5(company, year, month);
+	}
+	
+	@Override
+	public List<MonthlyTotalQuoteCustomerGroup> getTotalCustomerGroupCompanyAndMonthAndYear6(String company,int year,int month){
+		return repository.getTotalCustomerGroupCompanyAndMonthAndYear6(company, year, month);
 	}
 }
